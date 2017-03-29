@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="stories">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="angular/angular.min.js" charset="utf-8"></script>
+    <script src="angular/services.js" charset="utf-8"></script>
+    <script src="angular/controllers.js" charset="utf-8"></script>
+    <script src="angular/app.js" charset="utf-8"></script>
+
+
+
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-controller="Ctrl">
+    <div align="center">
+      <div ng-repeat="photo in photos" style="width: 200; height: 200" class="well">
+          <table>
+            <tr>
+              <td>
+                <div class="well">
+                  <img src="Images/{{photo.name}}" width="400" height="400" alt="">
+                </div>
+              </td>
+              <td>
+                <div class="well">
+                  <p>Write a story about this photo.</p>
+                  <textarea name="story" rows="8" cols="80"></textarea>
+                  <button type="button" name="submit" ng-click="submit()">Submit</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+      </div>
+    </div>
+
+
+
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="bootstap-3.3.7-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
