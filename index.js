@@ -1,3 +1,20 @@
+
+/*
+  TODO: make rest calls for collecting and sending data
+    to and from the angular interface
+
+  RestCalls
+    getStory
+    postStory
+
+    getAllStories
+    postStories
+
+  Rest & Express using Request
+  https://smarttechie.org/2015/10/19/how-to-make-rest-api-call-from-express-application/
+
+*/
+
 const express = require('express');
 const path = require('path');
 var app = express();
@@ -12,6 +29,9 @@ app.get('/', function(req, res) {
     path.join(__dirname, "public", "index.html")
   );
 })
+
+
+
 
 
 app.listen(app.get('port'), function() {
