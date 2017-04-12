@@ -22,8 +22,20 @@
     <![endif]-->
   </head>
   <body ng-controller="Ctrl">
-    <div align="center">
-      <div ng-repeat="photo in photos" style="width: 200; height: 200" class="well">
+    <div class="container well">
+      <p>
+        Write stories for the following pictures below. You may write as many
+        or as little stories as you would like. Just make sure to submit each
+        story after you have written it, so you can get the results. There
+        are no rules on the stories you write beside them needing to make
+        some semblince of sense.
+      </p>
+    </div>
+    <div class="container" align="center">
+      <div ng-repeat="photo in photos"
+           style="width: 200; height: 200"
+           colspan="2"
+           class="well">
           <table>
             <tr>
               <td>
@@ -32,9 +44,9 @@
                 </div>
               </td>
               <td>
-                <div class="well">
+                <div class="well" style="margin-left: 10px">
                   <p>Write a story about this photo.</p>
-                  <textarea name="story" rows="8" cols="80"></textarea>
+                  <textarea ng-model="story.text" name="story" rows="8" cols="80"></textarea>
                   <button type="button" name="submit" ng-click="submit()">Submit</button>
                 </div>
               </td>
