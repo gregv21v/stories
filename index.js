@@ -33,6 +33,7 @@ var app = express();
 var jsonParser = bodyParser.json()
 // use process.env.MONGOLAB_URI for URI on heroku server
 var db = mongojs(
+  process.env.MONGOLAB_URI,
   ["stories"]
 );
 
