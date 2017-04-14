@@ -32,27 +32,31 @@
       </p>
     </div>
     <div class="container" align="center">
-      <div ng-repeat="photo in photos"
-           style="width: 200; height: 200"
-           colspan="2"
-           class="well">
-          <table>
-            <tr>
-              <td>
-                <div class="well">
-                  <img src="images/{{photo.name}}" width="400" height="400" alt="">
-                </div>
-              </td>
-              <td>
-                <div class="well" style="margin-left: 10px">
-                  <p>Write a story about this photo.</p>
-                  <textarea ng-model="story.text" name="story" rows="8" cols="80"></textarea>
-                  <button type="button" name="submit" ng-click="submit()">Submit</button>
-                </div>
-              </td>
-            </tr>
-          </table>
+      <div class="well">
+        <table>
+          <tr>
+            <td>
+              <button type="button" name="button" ng-click="prev()"><==</button>
+            </td>
+            <td>
+              <div class="well" style="margin: auto">
+                <img class="img-responsive center-block"
+                     src="images/{{selected.name}}"
+                     width="400" height="400" alt="">
+              </div>
+              <div class="well">
+                <p>Write a story about this photo.</p>
+                <textarea ng-model="story.text" name="story" rows="8" cols="80"></textarea><br>
+                <button style="margin: auto" ng-click="submit()">Submit</button>
+              </div>
+            </td>
+            <td>
+              <button type="button" name="button" ng-click="next()">==></button>
+            </td>
+          </tr>
+        </table>
       </div>
+
     </div>
 
 
