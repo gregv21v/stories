@@ -1,12 +1,13 @@
-var mod = angular.module("stories.services", [])
+var mod = angular.module("stories.services")
 
 
 mod.factory("StoryData", function($http) {
-  var baseURL = "http://localhost:5000/"
+
+
 
   return {
     /*
-      Posts a story to the database
+      Get the list of images
     */
     postStory: function(story) {
 
@@ -31,14 +32,6 @@ mod.factory("StoryData", function($http) {
 
       return temp;
 
-
-    },
-    /*
-      Get a story from the database
-      based on the author key
-    */
-    getStory: function(id) {
-      return null;
 
     }
 

@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html ng-app="stories">
+  <!--
+    After the person has entered all the stories that he wants to,
+    generate a random key that is both added to the database,
+    and shown to the person so they can enter it in mturk.
+  -->
+
+
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -39,6 +46,10 @@
         narrative about that picture might be. He had just gone out to
         coffee, and left his computer there because he felt it was safe. As
         he lived on a school campus that was very safe. No one stole things.
+      </p> <br>
+
+      <p>
+        If you ever want to stop writing stories, click the finish button.
       </p>
     </div>
     <div class="container" align="center">
@@ -60,7 +71,8 @@
               <div class="well" ng-show="visible">
                 <p>Write your own personal narrative about this image.</p>
                 <textarea ng-model="story.text" name="story" rows="8" cols="80"></textarea><br>
-                <button style="margin: auto" ng-click="submit()">Submit</button>
+                <button ng-click="submit()">Submit</button>
+                <button ng-click="finish()">Finish</button>
               </div>
 
               <div class="text-center well" ng-show="!visible">

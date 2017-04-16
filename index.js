@@ -33,8 +33,9 @@ var app = express();
 var jsonParser = bodyParser.json()
 // use process.env.MONGOLAB_URI for URI on heroku server
 var db = mongojs(
-  process.env.MONGODB_URI,
-  ["stories"]
+  "mongodb://heroku_5rwzvrlz:smartwolf25@ds145800.mlab.com:45800/heroku_5rwzvrlz",
+  //process.env.MONGODB_URI,
+  ["stories", "images"]
 );
 
 app.set('port', (process.env.PORT || 5000));
@@ -48,13 +49,46 @@ app.get('/', function(req, res) {
 })
 
 
+// the root when coming from mturk
+app.get('/mturk', function(req, res) {
+  res.sendFile(
+    path.join(__dirname, "public", "mturk.html")
+  )
+})
+
+
+// post initial images to database
+/* This is for initializing images
+var initialImages = [
+  { name: "apple-desk-laptop-working.jpg", id: 0 },
+  { name: "city-sunny-people-street.jpg" },
+  { name: "man-relax-couch-study.jpg" },
+  { name: "pexels-photo-196464.jpeg" },
+  { name: "pexels-photo-211050.jpeg" },
+  { name: "pexels-photo-212092.jpeg" },
+  { name: "pexels-photo-247811.jpeg" },
+  { name: "pexels-photo-25349.jpg" },
+  { name: "pexels-photo-40120.jpeg" },
+  { name: "pexels-photo-70292.jpeg" },
+  { name: "pexels-photo-78225.jpeg" },
+  { name: "pexels-photo-89873.jpeg" },
+  { name: "pexels-photo.jpg" }
+]
+
+for(var i = 0; i < initialImages.length; i++) {
+  var img = initialImages[i];
+  img.id = i;
+  db.images.insert(img);
+}
+*/
+
+
+
+
 // app post story
 app.post('/story', jsonParser, function(req, res, next) {
-  console.log("Story added");
-
   var story = req.body;
   db.stories.save(story, function(err, data) {
-    console.log(err);
     console.log(data);
     res.end(JSON.stringify(data))
   })
@@ -67,6 +101,14 @@ app.get('/story', function(req, res) {
   db.stories.find(function(err, docs) {
     res.json(200, docs);
   });
+})
+
+// get the entire list of images
+// or maybe just a few depending
+app.get('/images', function(req, res) {
+  db.images.find(function (err, docs) {
+    res.json(200, docs);
+  })
 })
 
 
