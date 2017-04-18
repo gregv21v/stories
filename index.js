@@ -88,6 +88,7 @@ for(var i = 0; i < initialImages.length; i++) {
 stories.init(app, db, jsonParser);
 users.init(app, db, jsonParser);
 
+/*
 // remove junk stories
 db.stories.find(function(err, stories) {
   for(var i = 0; i < stories.length; i++) {
@@ -97,6 +98,7 @@ db.stories.find(function(err, stories) {
     }
   }
 })
+*/
 
 
 
