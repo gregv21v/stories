@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="stories">
+  <head>
+    <meta charset="utf-8">
+    <title>Hit for Mechanical Turk</title>
+    <script src="angular/angular.min.js" charset="utf-8"></script>
+    <script src="angular/app.js" charset="utf-8"></script>
+    <script src="angular/modules.js" charset="utf-8"></script>
+
+    <script src="angular/services/userData.js" charset="utf-8"></script>
+    <script src="angular/controllers/hitController.js" charset="utf-8"></script>
+  </head>
+  <body ng-controller="HitCtrl">
+    <!-- target="_blank" makes the url open in a new tab -->
+    <a href="/survey.html?fromTurk=true&code={{key}}" target="_blank">Survey</a>
+    <p>Enter the code you get at the end of the survey here:</p>
+    <input type="text" ng-model="keyCode" value="">
+    <button type="button" name="submit" ng-click="submit()">Submit</button>
+  </body>
+</html>

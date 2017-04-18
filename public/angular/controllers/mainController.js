@@ -1,10 +1,14 @@
 var mod = angular.module("stories.controllers")
 
 
-mod.controller("Ctrl", function($scope, ImageData, StoryData) {
+mod.controller("Ctrl",
+  ['$scope', '$location', 'ImageData', 'StoryData', 'UserData',
+      function($scope, $location, ImageData, StoryData, UserData) {
 
   // initialize some variables
   $scope.story = {} // modal to get the text from
+  console.log($location.search());
+  $scope.userKey = $location.search();
   $scope.storiesCompleted = 0; // the number of stories you have
                                // written so far.
   $scope.allComplete = false; // all the stories have been written
@@ -28,9 +32,8 @@ mod.controller("Ctrl", function($scope, ImageData, StoryData) {
     $scope.images[$scope.selectedIndex].done = true;
     $scope.visible = false;
 
-
     StoryData.postStory({
-      authorId: "12345", // this could be the worker id
+      userKey: $scope.userKey, // this could be the worker id
       photoId: $scope.selectedIndex,
       text: $scope.story.text
     })
@@ -41,7 +44,21 @@ mod.controller("Ctrl", function($scope, ImageData, StoryData) {
     if($scope.storiesCompleted == $scope.images.length) {
       $scope.allComplete = true;
     }
+  }
 
+  // Completes the survey, and gives the user a code if they
+  // came from mechanical turk.
+  $scope.finish = function() {
+    $scope.submit(); // submit the story that has already
+                     // been written
+    var params = $location.search();
+
+    if(params["fromTurk"] == "true") {
+      // display code
+
+    } else {
+      //
+    }
 
   }
 
@@ -66,4 +83,4 @@ mod.controller("Ctrl", function($scope, ImageData, StoryData) {
     $scope.visible = !$scope.images[$scope.selectedIndex].done;
   }
 
-})
+}])

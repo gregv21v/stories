@@ -28,14 +28,17 @@ const express = require('express');
 const path = require('path');
 const mongojs = require('mongojs');
 const bodyParser = require('body-parser');
+const stories = require('./server/stories.js');
+const users = require('./server/users.js');
+
 
 var app = express();
 var jsonParser = bodyParser.json()
 // use process.env.MONGOLAB_URI for URI on heroku server
 var db = mongojs(
-  "mongodb://heroku_5rwzvrlz:smartwolf25@ds145800.mlab.com:45800/heroku_5rwzvrlz",
-  //process.env.MONGODB_URI,
-  ["stories", "images"]
+  //"mongodb://127.0.0.1:27017/stories",
+  process.env.MONGODB_URI,
+  ["stories", "images", "users"]
 );
 
 app.set('port', (process.env.PORT || 5000));
@@ -44,7 +47,7 @@ app.use(express.static('public'));
 
 app.get('/', function(req, res) {
   res.sendFile(
-    path.join(__dirname, "public", "index.html")
+    path.join(__dirname, "public", "survey.html")
   );
 })
 
@@ -52,7 +55,7 @@ app.get('/', function(req, res) {
 // the root when coming from mturk
 app.get('/mturk', function(req, res) {
   res.sendFile(
-    path.join(__dirname, "public", "mturk.html")
+    path.join(__dirname, "public", "hit.html")
   )
 })
 
@@ -82,26 +85,23 @@ for(var i = 0; i < initialImages.length; i++) {
 }
 */
 
+stories.init(app, db, jsonParser);
+users.init(app, db, jsonParser);
 
-
-
-// app post story
-app.post('/story', jsonParser, function(req, res, next) {
-  var story = req.body;
-  db.stories.save(story, function(err, data) {
-    console.log(data);
-    res.end(JSON.stringify(data))
-  })
-
-  return next();
+// remove junk stories
+db.stories.find(function(err, stories) {
+  for(var i = 0; i < stories.length; i++) {
+    if(stories[i].text.length < 10) {
+      db.stories.remove({ $_id : stories[i]._id })
+      console.log(stories[i].text);
+    }
+  }
 })
 
-// app get story
-app.get('/story', function(req, res) {
-  db.stories.find(function(err, docs) {
-    res.json(200, docs);
-  });
-})
+
+
+
+
 
 // get the entire list of images
 // or maybe just a few depending
@@ -112,8 +112,7 @@ app.get('/images', function(req, res) {
 })
 
 
-// app post all stories
-// app get all stories
+
 
 app.listen(app.get('port'), function() {
   console.log("Example app on port " + app.get('port') + "!");

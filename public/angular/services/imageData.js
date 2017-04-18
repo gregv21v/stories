@@ -39,7 +39,7 @@ mod.factory("ImageData", function($http) {
       */
       return images;
 
-    },
+    }
 
 
   }
