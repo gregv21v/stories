@@ -1,0 +1,52 @@
+<div class="container well">
+  <p>
+    Write stories for the following pictures below. You may write as many
+    or as little stories as you would like. The stories should provide
+    a short narrative, and not just be a description of the picture.
+  </p> <br>
+
+  <p>
+    For example, the first picture has a computer on a desk. A short
+    narrative about that picture might be. He had just gone out for
+    coffee, and left his computer there because he felt it was safe.
+    He lived in a peaceful community, where no one stole from anyone.
+  </p> <br>
+
+  <p>
+    If you ever want to stop writing stories, click the finish button.
+  </p>
+</div>
+<div class="container" align="center">
+  <div class="well">
+    <table>
+      <tr>
+        <td>
+          <button type="button" name="button" ng-click="prev()"><==</button>
+        </td>
+        <td>
+          <div class="text-center well" style="background: red;" ng-show="allComplete">
+            <h2>You have written all the narratives you can.</h2>
+          </div>
+          <div class="well" style="margin: auto">
+            <img class="img-responsive center-block"
+                 src="images/{{selected.name}}"
+                 width="400" height="400" alt="">
+          </div>
+          <div class="well" ng-show="visible">
+            <p>Write your own personal narrative about this image.</p>
+            <textarea ng-model="story.text" name="story" rows="8" cols="80"></textarea><br>
+            <button ng-click="submit()">Submit</button>
+            <button ng-click="finish()">Finish</button>
+          </div>
+
+          <div class="text-center well" ng-show="!visible">
+            <h2>You have written a story!!</h2>
+          </div>
+        </td>
+        <td>
+          <button type="button" name="button" ng-click="next()">==></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

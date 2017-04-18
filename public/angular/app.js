@@ -1,4 +1,5 @@
 var app = angular.module("stories", [
+  "ngRoute",
   "stories.controllers",
   "stories.services"
 ])

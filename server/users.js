@@ -18,9 +18,6 @@ module.exports = {
       // 6-digits
       userCred.key = Math.floor((Math.random() * 1000000) + 1);
 
-      console.log("Created user");
-      console.log("Key: " + userCred);
-
       db.users.save(userCred, function(err, data) {
         res.send(userCred); // send the whole object otherwise it will be mistaken
                             // for an error

@@ -15,13 +15,18 @@ mod.controller("HitCtrl",
     $scope.key = key;
   })
 
-  $scope.keyCode = 0
+  //$scope.keyCode = 0
 
   $scope.inputEnabled = false
   $scope.buttonText = "Please accept this HIT to continue."
 
   // get the url paramerters
+
+
+  console.log(window.location.href);
   var params = $location.search()
+
+  console.log($location.search());
   var assignId = params["assignmentId"]
   var submitTo = params["turkSubmitTo"]
 

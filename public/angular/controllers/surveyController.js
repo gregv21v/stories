@@ -1,20 +1,17 @@
 var mod = angular.module("stories.controllers")
 
 
-mod.controller("Ctrl",
-  ['$scope', '$location', 'ImageData', 'StoryData', 'UserData',
-      function($scope, $location, ImageData, StoryData, UserData) {
+mod.controller("SurveyCtrl",
+  ['$scope', '$location', '$window', 'ImageData', 'StoryData', 'UserData',
+      function($scope, $location, $window, ImageData, StoryData, UserData) {
 
   // initialize some variables
   $scope.story = {} // modal to get the text from
-  console.log($location.search());
   $scope.userKey = $location.search();
   $scope.storiesCompleted = 0; // the number of stories you have
                                // written so far.
   $scope.allComplete = false; // all the stories have been written
   $scope.images = ImageData.getImages();
-
-  console.log($scope.images);
 
   // initialize the fields for the images locally.
   for(var i = 0; i < $scope.images.length; i++) {
@@ -53,11 +50,10 @@ mod.controller("Ctrl",
                      // been written
     var params = $location.search();
 
-    if(params["fromTurk"] == "true") {
-      // display code
 
-    } else {
-      //
+    if("code" in params) {
+      // go to end survey page
+      $location.path('end')
     }
 
   }

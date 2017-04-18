@@ -47,7 +47,7 @@ app.use(express.static('public'));
 
 app.get('/', function(req, res) {
   res.sendFile(
-    path.join(__dirname, "public", "survey.html")
+    path.join(__dirname, "public", "index.html")
   );
 })
 
@@ -58,6 +58,7 @@ app.get('/mturk', function(req, res) {
     path.join(__dirname, "public", "hit.html")
   )
 })
+
 
 
 // post initial images to database
@@ -99,11 +100,6 @@ db.stories.find(function(err, stories) {
   }
 })
 */
-
-
-
-
-
 
 // get the entire list of images
 // or maybe just a few depending

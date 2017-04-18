@@ -10,6 +10,8 @@ mod.factory("StoryData", function($http) {
       Get the list of images
     */
     postStory: function(story) {
+      //var deferred = $q.defer();
+
 
       console.log(story);
       var config = {
@@ -21,9 +23,8 @@ mod.factory("StoryData", function($http) {
       // of angular
       var temp = {}
       $http.post("/story", story)
-        .then(function (data) {
-            console.log("Nothing happened....");
-            temp = data;
+        .then(function (resp) {
+            temp = resp.data;
             console.log(data);
         }, function(msg) {
             console.log(msg);
